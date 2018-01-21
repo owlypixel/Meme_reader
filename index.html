@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<title>This is a Microsoft cognitive services API check!</title>
+		<meta charset="UTF-8" />
+		<title>This is a Microsoft Cognitive Services API check!</title>
 	</head>
 	<body>
 		<h1>Meme reader v.1</h1>
 		<p>Read the text from a meme</p>
-		<form>
+		<form method="POST">
 			<label>Computer vision API:
 				<input id="apiKeyInput" type="password"/> 
 			</label>
 			<label>Image URL:
-				<input id="memeUrlInput" type="text"/>
+				<input id="memeUrlInput" type="url"/>
 			</label>
-			<input type="submit" value="Read the meme"/>
+			<input type="submit" value="Read my meme!"/>
 		</form>
-		<img />
-		<p> </p>
+		<img id="resultImage" />
+		<p id="resultPara"> </p>
+
+		<script src="index.js"></script>
 	</body>
 </html>
