@@ -14,15 +14,18 @@ const onSubmit = (event) => {
 	localStorage.setItem('apiKey', apiKey);
 	
 	getOcrResult(memeUrl, apiKey)
-		.then((response) => console.log(response))
+		.then(formatResponse)
+		.then((memetext) => {
+				
+		})
 		.catch(console.error);
 };
 
 // getting raw result from the API
 const getOcrResult = (memeUrl, apiKey) => {
-	const apiUrl = 'https://westcentralus.api.cognitive.microsoft.com/vision/v1.0';
+	const apiUrl = 'https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/ocr';
 	const params = {
-		'language': 'unk',
+		'language': 'en',
 		'detectOrientation': 'true',	
 	};
 	const paramsString = Object.keys(params).map((key) => `${key}=${params[key]}`).join('&');
@@ -35,7 +38,7 @@ const getOcrResult = (memeUrl, apiKey) => {
 
 	const fetchOptions = {
 		method: 'POST',
-		header: headers,
+		headers,
 		body: `{"url": "${memeUrl}"}`	
 	};
 
@@ -44,8 +47,18 @@ const getOcrResult = (memeUrl, apiKey) => {
 };
 
 // formatting the result
-const formatResult = () => {
-	
+const formatResponse = (response) => {
+	return new Promise((resolve, reject) => {
+		const flatResponse = response.regions.map((region) => {
+			return region.lines.map((line) => {
+				return line.words.reduce((wordstring, word) => {
+					return `${wordstring} ${word.text}`;			
+				}, '');	
+			}).join('');
+		})[0];
+		console.log(flatResponse);
+		resolve(flatResponse);
+	});
 };
 
 form.addEventListener('submit', onSubmit);
