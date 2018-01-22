@@ -8,16 +8,14 @@ const resultImage = document.querySelector('#resultImage');
 // getting party started!
 const onSubmit = (event) => {
 	event.preventDefault();
-	console.log('this form was submitted!', event);
 	const memeUrl = memeUrlInput.value;
 	const apiKey = apiKeyInput.value || localStorage.getItem('apiKey');
 	localStorage.setItem('apiKey', apiKey);
-	
+	resultImage.src = memeUrl;
+
 	getOcrResult(memeUrl, apiKey)
 		.then(formatResponse)
-		.then((memetext) => {
-				
-		})
+		.then((memeText) => resultPara.textContent = memeText.toUpperCase())
 		.catch(console.error);
 };
 
@@ -25,7 +23,7 @@ const onSubmit = (event) => {
 const getOcrResult = (memeUrl, apiKey) => {
 	const apiUrl = 'https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/ocr';
 	const params = {
-		'language': 'en',
+		'language': 'unk',
 		'detectOrientation': 'true',	
 	};
 	const paramsString = Object.keys(params).map((key) => `${key}=${params[key]}`).join('&');
@@ -46,16 +44,17 @@ const getOcrResult = (memeUrl, apiKey) => {
 		.then((response) => response.json())
 };
 
-// formatting the result
+// formatting the response
 const formatResponse = (response) => {
 	return new Promise((resolve, reject) => {
+		console.log(response);
 		const flatResponse = response.regions.map((region) => {
 			return region.lines.map((line) => {
 				return line.words.reduce((wordstring, word) => {
 					return `${wordstring} ${word.text}`;			
 				}, '');	
 			}).join('');
-		})[0];
+		}).join('');
 		console.log(flatResponse);
 		resolve(flatResponse);
 	});
