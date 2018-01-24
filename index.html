@@ -3,22 +3,28 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>This is a Microsoft Cognitive Services API check!</title>
+		<link rel=stylesheet href="style.css" />
 	</head>
 	<body>
-		<h1>Meme reader v.1</h1>
-		<p>Read the text from a meme</p>
-		<form method="POST">
-			<label>Computer vision API:
-				<input id="apiKeyInput" type="password"/> 
-			</label>
-			<label>Image URL:
-				<input id="memeUrlInput" type="url"/>
-			</label>
-			<input type="submit" value="Read my meme!"/>
-		</form>
-		<img id="resultImage" />
-		<p id="resultPara"> </p>
-
+		<div class="box-wrapper">
+			<h1>Owly Meme Reader</h1>
+			<p>Greetings! This is a small experimental app where you will be exploring and utilizing the amazing powers of OCR to read the text from a meme.</p>
+			<form method="POST">
+				<div class="input-container">
+					<label>Computer vision API key:
+						<input id="apiKeyInput" class="pretty" type="text" placeholder="Enter your key" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your key'"/> 
+					</label>
+				</div>
+				<div class="input-container">
+					<label>Image URL:
+						<input id="memeUrlInput" class="pretty" type="url" placeholder="Paste image URL here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Paste image URL here'"/>
+					</label>
+				</div>
+				<input type="submit" value="Read my meme!"/>
+			</form>
+			<img id="resultImage" />
+			<p id="resultPara"> </p>
+		</div>
 		<script src="index.js"></script>
 	</body>
 </html>

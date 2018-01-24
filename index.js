@@ -47,7 +47,6 @@ const getOcrResult = (memeUrl, apiKey) => {
 // formatting the response
 const formatResponse = (response) => {
 	return new Promise((resolve, reject) => {
-		console.log(response);
 		const flatResponse = response.regions.map((region) => {
 			return region.lines.map((line) => {
 				return line.words.reduce((wordstring, word) => {
@@ -55,7 +54,6 @@ const formatResponse = (response) => {
 				}, '');	
 			}).join('');
 		}).join('');
-		console.log(flatResponse);
 		resolve(flatResponse);
 	});
 };
