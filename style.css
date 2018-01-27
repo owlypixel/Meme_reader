@@ -1,9 +1,11 @@
 /* Imports */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+
 /* Minimal reset */
 html{
 	box-sizing: border-box;	
 }
+
 *{
 	box-sizing: inherit;
 	margin: 0;
@@ -22,13 +24,62 @@ body {
 }
 .box-wrapper {
 	position: relative;
+	perspective: 600px;
+	-webkit-perspective: 600px;
+	-moz-perspective: 600px;
 	margin: 5% auto;
 	width: 600px;
 	height: 400px;
+}
+.front, .back{
+	position: absolute;
+	width: inherit;
+	height: inherit;
 	background: #FFF;
 	border-radius: 2px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 	padding: 40px;
+}
+.front {
+	top: 0;
+	z-index: 900;
+	text-align: center;
+	-webkit-transform: rotateX(0deg) rotateY(0deg);
+	   -moz-transform: rotateX(0deg) rotateY(0deg);
+	-webkit-transform-style: preserve-3d;
+	   -moz-transform-style: preserve-3d;
+	-webkit-backface-visibility: hidden;
+	   -moz-backface-visibility: hidden;
+	-webkit-transition: all .4s ease-in-out;
+	   -moz-transition: all .4s ease-in-out;
+		-ms-transition: all .4s ease-in-out;
+		 -o-transition: all .4s ease-in-out;
+			transition: all .4s ease-in-out;
+}
+.back {
+	top: 0;
+	z-index: 1000;
+	-webkit-transform: rotateY(-180deg);
+	   -moz-transform: rotateY(-180deg);
+	-webkit-transform-style: preserve-3d;
+	   -moz-transform-style: preserve-3d;
+	-webkit-backface-visibility: hidden;
+	   -moz-backface-visibility: hidden;
+	-webkit-transition: all .4s ease-in-out;
+	   -moz-transition: all .4s ease-in-out;
+		-ms-transition: all .4s ease-in-out;
+		 -o-transition: all .4s ease-in-out;
+			transition: all .4s ease-in-out;
+}
+.box-wrapper.flip .front {
+	z-index: 900;
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+}
+.box-wrapper.flip .back {
+	z-index: 1000;
+	-webkit-transform: rotateX(0deg) rotateY(0deg);
+	-moz-transform: rotateX(0deg) rotateY(0deg);
 }
 h1{
 	margin: 0 0 20px 0;
@@ -37,6 +88,7 @@ h1{
 }
 p {
 	margin-bottom: 20px;
+	text-align: left;
 }
 .input-container {
 	margin: 0 0 15px;
@@ -66,9 +118,25 @@ input[type="submit"] {
 	transition: 0.1s ease;
 	cursor: pointer;
 }
-input[type="submit"]:hover, input[type="submit"]:focus {
-	opacity: 0.8;
+input[type="submit"]:hover {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 	transition: 0.1s ease;
+}
+#resultImage {
+	display: block;
+	margin: 0 auto;
+	max-width: 300px;
+	max-height: 160px;
+}
+#resultPara {
+	text-align: center;
+	font-weight: 600;
+	margin: 20px;
+}
+#back {
+	position: absolute;
+	bottom: 40px;
+	width: 86%;
+	margin-top: 0;
 }
 

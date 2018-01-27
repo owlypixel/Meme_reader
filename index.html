@@ -2,28 +2,34 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>This is a Microsoft Cognitive Services API check!</title>
+		<title>This is a Microsoft Cognitive Services API test!</title>
 		<link rel=stylesheet href="style.css" />
 	</head>
 	<body>
 		<div class="box-wrapper">
-			<h1>Owly Meme Reader</h1>
-			<p>Greetings! This is a small experimental app where you will be exploring and utilizing the amazing powers of OCR to read the text from a meme.</p>
-			<form method="POST">
-				<div class="input-container">
-					<label>Computer vision API key:
-						<input id="apiKeyInput" class="pretty" type="text" placeholder="Enter your key" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your key'"/> 
-					</label>
-				</div>
-				<div class="input-container">
-					<label>Image URL:
-						<input id="memeUrlInput" class="pretty" type="url" placeholder="Paste image URL here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Paste image URL here'"/>
-					</label>
-				</div>
-				<input type="submit" value="Read my meme!"/>
-			</form>
-			<img id="resultImage" />
-			<p id="resultPara"> </p>
+			<div class="front">
+				<h1>Owly Meme Reader</h1>
+				<p>Greetings! This is a small experimental app where you will be exploring and utilizing the amazing powers of OCR to read the text from a meme.</p>
+				<form method="POST">
+					<div class="input-container">
+						<label>Computer vision API key:
+							<input id="apiKeyInput" class="pretty" type="password" placeholder="Enter your key" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your key'"/> 
+						</label>
+					</div>
+					<div class="input-container">
+						<label>Image URL:
+							<input id="memeUrlInput" class="pretty" type="url" placeholder="Paste image URL here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Paste image URL here'"/>
+						</label>
+					</div>
+					<input type="submit" value="Read my meme!"/>
+				</form>
+			</div>
+			<div class="back">
+				<h1>Recognition results</h1>
+				<img id="resultImage"/>
+				<p id="resultPara">Calculating result...</p>
+				<input type="submit" id="back" value="Read another meme!"/>
+			</div>
 		</div>
 		<script src="index.js"></script>
 	</body>

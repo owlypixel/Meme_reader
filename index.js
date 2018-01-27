@@ -1,9 +1,11 @@
-// grabbing our elements from the form
+// grabbing our elements from the page
 const form = document.querySelector('form');
 const apiKeyInput = document.querySelector('#apiKeyInput');
 const memeUrlInput = document.querySelector('#memeUrlInput');
 const resultPara = document.querySelector('#resultPara');
 const resultImage = document.querySelector('#resultImage');
+const wrapper = document.querySelector('.box-wrapper');
+const back = document.querySelector('#back');
 
 // getting party started!
 const onSubmit = (event) => {
@@ -17,6 +19,7 @@ const onSubmit = (event) => {
 		.then(formatResponse)
 		.then((memeText) => resultPara.textContent = memeText.toUpperCase())
 		.catch(console.error);
+	wrapper.classList.add('flip');
 };
 
 // getting raw result from the API
@@ -58,4 +61,10 @@ const formatResponse = (response) => {
 	});
 };
 
+const returnBack = (event) => {
+	wrapper.classList.remove('flip');
+}
+
+// attaching event listeners
 form.addEventListener('submit', onSubmit);
+back.addEventListener('click', returnBack);
